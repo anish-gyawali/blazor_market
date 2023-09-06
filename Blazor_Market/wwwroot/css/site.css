@@ -66,3 +66,45 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+/* Login & Registration form */
+.form{
+    border:none;
+
+}
+.form-header {
+    text-align: center;
+    height: 80px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    font-weight: bold;
+    line-height: 80px;
+}
+.form-content {
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-content .row{
+    justify-content:center;
+}
+.form-control {
+    border-radius: 0.5rem;
+    margin:1.5rem;
+}
+
+.formButton {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    gap:2rem;  
+}
+.btnSubmit {
+    border: none;
+    border-radius: 1rem;
+    padding: 1%;
+    width: 10%;
+    cursor: pointer;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    color: #fff;
+    margin-bottom: 1rem;
+}

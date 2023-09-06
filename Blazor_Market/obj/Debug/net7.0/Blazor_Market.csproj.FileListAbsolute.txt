@@ -6,11 +6,17 @@ C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazor_Market.deps.j
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazor_Market.runtimeconfig.json
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazor_Market.dll
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazor_Market.pdb
+C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Microsoft.OpenApi.dll
+C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.csproj.AssemblyReference.cache
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.AssemblyInfoInputs.cache
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.AssemblyInfo.cs
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.csproj.CoreCompileInputs.cache
+C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.RazorAssemblyInfo.cache
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.RazorAssemblyInfo.cs
@@ -25,6 +31,7 @@ C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Shared\Mai
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\bundle\Blazor_Market.styles.css
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\projectbundle\Blazor_Market.bundle.scp.css
+C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.csproj.CopyComplete
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.dll
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\refint\Blazor_Market.dll
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.pdb

@@ -1,0 +1,40 @@
+﻿@page "/register"
+@inject NavigationManager Navigation
+
+<div class="form">
+
+   <div class="form-header">
+       <p>Registration</p>
+   </div>
+
+   <div class="form-content">
+       <div class="row">
+           <div class="col-md-4">
+               <div class="form-group">
+                   <input type="text" class="form-control" placeholder="First Name *" value="" />
+               </div>
+               <div class="form-group">
+                   <input type="text" class="form-control" placeholder="Last Name *" value="" />
+               </div>
+               <div class="form-group">
+                   <input type="text" class="form-control" placeholder="Email *" value="" />
+               </div>
+               <div class="form-group">
+                   <input type="text" class="form-control" placeholder="Password *" value="" />
+               </div>
+           </div>
+       </div>
+       <div class="formButton">    
+        <button type="button" class="btnSubmit">Register</button>
+            <button type="button" class="btnSubmit" onclick="@RouteToLogin"> Login</button>
+       </div>
+
+   </div>
+    
+</div>
+@code {
+    private void RouteToLogin()
+    {
+        Navigation.NavigateTo("login");
+    }
+}
