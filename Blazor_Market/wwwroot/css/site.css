@@ -68,28 +68,28 @@ a, .btn-link {
     }
 
 /* Login & Registration form */
-.form{
-    border:none;
 
-}
-.form-header {
-    text-align: center;
-    height: 80px;
-    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-    color: #fff;
-    font-weight: bold;
-    line-height: 80px;
-}
+
 .form-content {
-    border: 1px solid #ced4da;
     margin-bottom: 2%;
+    text-align:center;
 }
 .form-content .row{
     justify-content:center;
 }
+.form-content .row .form-header {
+    margin-top:5rem;
+    font-weight: bold;
+    line-height: 80px;
+    background-color:gainsboro;
+}
+.form-group{
+    margin-top:1rem;
+}
 .form-control {
     border-radius: 0.5rem;
-    margin:1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
 .formButton {
@@ -101,10 +101,12 @@ a, .btn-link {
 .btnSubmit {
     border: none;
     border-radius: 1rem;
+    justify-content:center;
     padding: 1%;
-    width: 10%;
+    width: 7rem;
     cursor: pointer;
     background: -webkit-linear-gradient(left, #0072ff, #8811c5);
     color: #fff;
+    text-decoration:none;
     margin-bottom: 1rem;
 }

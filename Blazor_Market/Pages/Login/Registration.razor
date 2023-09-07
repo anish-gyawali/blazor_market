@@ -1,40 +1,59 @@
 ﻿@page "/register"
+@using Blazor_Market.Models;
 @inject NavigationManager Navigation
+@layout LoginLayout
 
-<div class="form">
+<div class="card">
 
-   <div class="form-header">
-       <p>Registration</p>
-   </div>
-
-   <div class="form-content">
+    <EditForm class="form-content" Model="@model" OnSubmit="RegisterAccount">
        <div class="row">
            <div class="col-md-4">
+                <h3 class="form-header">Registration</h3>
                <div class="form-group">
-                   <input type="text" class="form-control" placeholder="First Name *" value="" />
+                   <input type="text" class="form-control" placeholder="First Name *" @bind-value="model.FirstName" />
                </div>
                <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                   <input type="text" class="form-control" placeholder="Last Name *" @bind-value="model.LastName" />
                </div>
                <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Email *" value="" />
+                   <input type="text" class="form-control" placeholder="Email *" @bind-value="model.Email" />
                </div>
                <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Password *" value="" />
+                   <input type="password" class="form-control" placeholder="Password *" @bind-value="model.Password" />
                </div>
            </div>
        </div>
-       <div class="formButton">    
-        <button type="button" class="btnSubmit">Register</button>
-            <button type="button" class="btnSubmit" onclick="@RouteToLogin"> Login</button>
-       </div>
+        <button disabled="@loading" class="btnSubmit" type="submit">
+            @if (loading)
+            {
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+            }
+            Register
+        </button>
+        <button  class="btnSubmit" @onclick="RouteToLogin">Login</button>
 
-   </div>
+   </EditForm>
     
 </div>
 @code {
+    private User model = new User();
+    private bool loading;
+
     private void RouteToLogin()
     {
         Navigation.NavigateTo("login");
+    }
+
+    private void RegisterAccount()
+    {
+        loading = true;
+        try{
+            Console.WriteLine(model);
+        }catch(Exception ex)
+        {
+            Console.WriteLine("error",ex);
+            loading = false;
+            StateHasChanged();
+        }
     }
 }

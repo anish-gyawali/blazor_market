@@ -1,32 +1,53 @@
-﻿@page "/login"
+﻿@page "/"
+@using Blazor_Market.Models;
 @inject NavigationManager Navigation
+@layout LoginLayout
 
-<div class="form">
-
-   <div class="form-header">
-       <p>Login</p>
-   </div>
-   <div class="form-content">
+<div class="card">
+    <EditForm class="form-content" Model="@model" OnSubmit="@UserLogin">
        <div class="row">
-           <div class="col-md-4">
+            <div class="col-md-4">
+                <h3 class="form-header">Login</h3>
                <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Email *" value="" />
+                   <input type="text" class="form-control" placeholder="Email *" @bind-value="model.Email" />
                </div>
                <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Password *" value="" />
+                   <input type="text" class="form-control" placeholder="Password *" @bind-value="model.Password" />
                </div>
            </div>
        </div>
-       <div class="formButton">
-            <button type="button" class="btnSubmit" onclick="@RouteToRegister">Register</button>
-            <button type="button" class="btnSubmit"> Login</button>
-       </div>
-   </div>
- </div>
-@code {
+       <button disabled="@loading" class="btnSubmit" type="submit">
+            @if (loading)
+            {
+                <span class="spinner-border spinner-border-sm mr-1"></span>
+            }
+            Login
+        </button>
+        <button type="button" class="btnSubmit" @onclick="RouteToRegister">Register</button>
 
+   </EditForm>
+ </div>
+
+@code {
+    private Models.Login model= new Models.Login();
+    private bool loading;
     private void RouteToRegister()
     {
         Navigation.NavigateTo("register");
+    }
+
+    private void UserLogin()
+    {
+        loading = true;
+        try
+        {
+            Console.WriteLine("user loggedin",model);
+            Navigation.NavigateTo("home");
+        }catch(Exception ex)
+        {
+            Console.WriteLine("encountered with error:",ex);
+            loading = false;
+            StateHasChanged();
+        }
     }
 }
