@@ -1,0 +1,59 @@
+﻿@page "/login"
+@using Blazor_Market.API.Model;
+
+
+<style>
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+</style>
+
+
+<h3 class="text-center">Login</h3>
+
+<EditForm Model="@loginModel" OnValidSubmit="HandleValidSubmit" class="form-container">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="Email" class="form-label">Email</label>
+        <InputText id="Email" @bind-Value="loginModel.Email" class="form-control" />
+        <ValidationMessage For="@(() => loginModel.Email)" />
+    </div>
+
+    <div class="form-group">
+        <label for="Password" class="form-label">Password</label>
+        <InputText id="Password" @bind-Value="loginModel.Password" class="form-control" type="password" />
+        <ValidationMessage For="@(() => loginModel.Password)" />
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+    <p class="text-center mt-3">
+        Don't have an account? <a href="/register">Register here</a>
+    </p>
+</EditForm>
+
+@code {
+    private LoginModel loginModel = new LoginModel();
+
+    private void HandleValidSubmit()
+    {
+     //handle login logic here..   
+    
+    }
+}
