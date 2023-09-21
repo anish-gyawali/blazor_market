@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "WybUyPNIABnD9GwpR1GkzObbVDg+ZlPE03h/V2KmvxA=",
+  "Source": "Blazor_Market.API",
+  "BasePath": "_content/Blazor_Market.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
