@@ -1,27 +1,8 @@
 ﻿@page "/register"
-@using Blazor_Market.API.Model;
-
-<style>
-    .form-container {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-label {
-        font-weight: bold;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
-</style>
 
 <h3 class="text-center">Register</h3>
-<EditForm Model="@registerModel" OnValidSubmit="HandleValidSubmit" class="form-container">
+<div class="form-container">
+<EditForm Model="@registerModel" OnValidSubmit="HandleValidSubmit" >
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -62,13 +43,8 @@
         Already have an account? <a href="/login">Login here</a>
     </p>
 </EditForm>
-
+</div>
 
 @code {
-    private RegisterModel registerModel = new RegisterModel();
-    
-    private void HandleValidSubmit()
-    {
-        // Handle registration logic here
-    }
+   
 }

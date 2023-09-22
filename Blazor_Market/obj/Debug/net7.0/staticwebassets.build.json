@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fW5l6hKandYcnmfB5eAXVLz50E5uP3f7jwEvq8UAsJk=",
+  "Hash": "pVnWMXXNkqmSXw1iQVYYMaLxHXA7RxbmLKbY4zO5fwc=",
   "Source": "Blazor_Market",
   "BasePath": "_content/Blazor_Market",
   "Mode": "Default",
@@ -282,6 +282,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "C:\\Users\\anish\\blazor_market\\Blazor_Market\\wwwroot\\images\\logo.png",
+      "SourceId": "Blazor_Market",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\anish\\blazor_market\\Blazor_Market\\wwwroot\\",
+      "BasePath": "_content/Blazor_Market",
+      "RelativePath": "images/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
     }
   ]
 }
