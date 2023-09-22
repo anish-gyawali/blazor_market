@@ -2,7 +2,13 @@
 
 <h3 class="text-center">Login</h3>
 <div class="form-container">
-<EditForm Model="@loginModel" OnValidSubmit="HandleValidSubmit" >
+     @if (loginSuccessful)
+    {
+        <p class="text-success">Login Successful!</p>
+    }
+    else
+    {
+    <EditForm Model="@loginModel" OnValidSubmit="HandleValidSubmit" >
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -19,12 +25,27 @@
     </div>
 
     <div class="text-center">
-        <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" disabled="@isLoading">
+                    @if (isLoading)
+                    {
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <text>Loading...</text>
+                    }
+                    else if (loginSuccessful)
+                    {
+                        <text>Login Successful</text>
+                    }
+                    else
+                    {
+                        <text>Login</text>
+                    }
+        </button>
     </div>
     <p class="text-center mt-3">
         Don't have an account? <a href="/register">Register here</a>
     </p>
-</EditForm>
+ </EditForm>
+}
 </div>
 @code {
 

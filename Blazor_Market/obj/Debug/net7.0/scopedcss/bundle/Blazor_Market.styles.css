@@ -69,7 +69,10 @@ main[b-uopkotnye1] {
     font-size: 1.1rem;
     
 }
-
+.nav-item[b-gsqxve379c]{
+    display:flex;
+    align-content:flex-end
+}
 .oi[b-gsqxve379c] {
     width: 2rem;
     font-size: 1.1rem;

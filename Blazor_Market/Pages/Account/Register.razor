@@ -2,6 +2,12 @@
 
 <h3 class="text-center">Register</h3>
 <div class="form-container">
+     @if (registrationSuccessful)
+    {
+        <p class="text-success">Registration Successful!</p>
+    }
+    else
+    {
 <EditForm Model="@registerModel" OnValidSubmit="HandleValidSubmit" >
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -36,13 +42,28 @@
         <ValidationMessage For="@(() => registerModel.Password)" />
     </div>
 
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary">Register</button>
-    </div>
-    <p class="text-center mt-3">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" disabled="@isRegistering">
+                @if (isRegistering)
+                {
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <text>Registering...</text>
+                }
+                else if (registrationSuccessful)
+                {
+                    <text>Registration Successful</text>
+                }
+                else
+                {
+                    <text>Register</text>
+                }
+            </button>
+        </div>
+        <p class="text-center mt-3">
         Already have an account? <a href="/login">Login here</a>
     </p>
-</EditForm>
+    </EditForm>
+}
 </div>
 
 @code {

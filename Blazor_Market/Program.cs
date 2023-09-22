@@ -1,4 +1,5 @@
 using Blazor_Market.Data;
+using Blazor_Market.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,8 +8,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
+
+builder.Services.AddScoped<HttpClient>(s =>
+{
+    var httpClient = new HttpClient
+    {
+        BaseAddress = new Uri(builder.Configuration.GetSection("ApiBaseUrl").Value!)
+    };
+    return httpClient;
+});
+builder.Services.AddHttpClient();
+builder.Services.AddScoped<AccountService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,9 +31,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
-
 app.UseRouting();
 
 app.MapBlazorHub();

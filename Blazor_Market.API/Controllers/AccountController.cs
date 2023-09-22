@@ -9,6 +9,8 @@ using System.Text;
 
 namespace Blazor_Market.API.Controllers
 {
+    [Route("api/account")]
+    [ApiController]
     public class AccountController : Controller
     {
         private readonly UserManager<UserModel> _userManager;
@@ -23,7 +25,7 @@ namespace Blazor_Market.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterModel registerModel)
+        public async Task<IActionResult> Register([FromBody]RegisterModel registerModel)
         {
             if (!ModelState.IsValid)
             {
@@ -56,7 +58,7 @@ namespace Blazor_Market.API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> login(LoginModel loginModel)
+        public async Task<IActionResult> login([FromBody]LoginModel loginModel)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +81,6 @@ namespace Blazor_Market.API.Controllers
                 return Unauthorized("Invalid credentials");
         }
 
-
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> Logout()
@@ -89,6 +90,8 @@ namespace Blazor_Market.API.Controllers
             return Ok(new { message = "Logout successful" });
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [NonAction]
         public string GenerateJwtToken(UserModel user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
