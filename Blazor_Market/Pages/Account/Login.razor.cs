@@ -25,6 +25,11 @@ namespace Blazor_Market.Pages.Account
                 loginModel=new LoginModel();
                 NavigationManager!.NavigateTo("/");
             }
+            else
+            {
+                loginModel = new LoginModel();
+                NavigationManager!.NavigateTo("/login");
+            }
         }
     }
 }

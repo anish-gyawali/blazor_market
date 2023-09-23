@@ -9,12 +9,13 @@ namespace Blazor_Market.Pages.Account
         
         private bool isRegistering = false;
         private bool registrationSuccessful = false;
-        private readonly NavigationManager? navigationManager;
         private RegisterModel registerModel = new RegisterModel();
         
 
         [Inject]
         private AccountService? AccountService { get; set; }
+        [Inject]
+        private NavigationManager? NavigationManager { get; set; }
         private async Task HandleValidSubmit()
         {
             // Start the registration process
@@ -33,7 +34,12 @@ namespace Blazor_Market.Pages.Account
             {
                 // Registration was successful, clear the form and redirect to the home page
                 registerModel = new RegisterModel();
-                navigationManager!.NavigateTo("/home");
+                NavigationManager!.NavigateTo("/");
+            }
+            else
+            {
+                registerModel = new RegisterModel();
+                NavigationManager!.NavigateTo("/login");
             }
         }
     }
