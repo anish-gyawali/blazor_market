@@ -1,15 +1,15 @@
-using Blazor_Market.Data;
-using Blazor_Market.Services;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using Blazor_Market.Provider;
+using Blazor_Market.Services.Authentication;
+using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-
-
+builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddAuthenticationCore();
 builder.Services.AddScoped<HttpClient>(s =>
 {
     var httpClient = new HttpClient
@@ -19,7 +19,14 @@ builder.Services.AddScoped<HttpClient>(s =>
     return httpClient;
 });
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<AccountService>();
+
+builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<IAuthenticationService,AuthenticationService>();
+
+builder.Services.AddScoped<ApiAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider>(p=>
+                p.GetRequiredService<ApiAuthenticationStateProvider>());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,5 +1,5 @@
-﻿using Blazor_Market.API.Model;
-using Blazor_Market.Services;
+﻿using Blazor_Market.API.Model.AccountModel;
+using Blazor_Market.Services.Authentication;
 using Microsoft.AspNetCore.Components;
 
 namespace Blazor_Market.Pages.Account
@@ -11,13 +11,13 @@ namespace Blazor_Market.Pages.Account
         private LoginModel loginModel = new LoginModel();
 
         [Inject]
-        private AccountService? AccountService { get; set; }
+        private IAuthenticationService? AuthenticationService { get; set; }
         [Inject]
         private NavigationManager? NavigationManager { get; set; }
         private async void HandleValidSubmit()
         {
             isLoading = true;
-            bool loginResult = await AccountService!.LoginUserAsync(loginModel);
+            bool loginResult = await AuthenticationService!.LoginAsync(loginModel);
             loginSuccessful = loginResult;
             isLoading = false;
             if(loginResult)

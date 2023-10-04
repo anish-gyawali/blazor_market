@@ -1,5 +1,6 @@
-﻿using Blazor_Market.API.Model;
+﻿using Blazor_Market.API.Model.AccountModel;
 using Blazor_Market.Services;
+using Blazor_Market.Services.Authentication;
 using Microsoft.AspNetCore.Components;
 
 namespace Blazor_Market.Pages.Account
@@ -13,7 +14,7 @@ namespace Blazor_Market.Pages.Account
         
 
         [Inject]
-        private AccountService? AccountService { get; set; }
+        private IAuthenticationService? AuthenticationService { get; set; }
         [Inject]
         private NavigationManager? NavigationManager { get; set; }
         private async Task HandleValidSubmit()
@@ -22,7 +23,7 @@ namespace Blazor_Market.Pages.Account
             isRegistering = true;
 
             //send the registration request to the server
-            bool registrationResult = await AccountService!.RegisterAsync(registerModel); 
+            bool registrationResult = await AuthenticationService!.RegisterAsync(registerModel); 
 
             // Update the registration state
             registrationSuccessful = registrationResult;

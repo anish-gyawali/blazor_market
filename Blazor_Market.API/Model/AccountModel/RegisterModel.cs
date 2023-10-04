@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Blazor_Market.API.Model
+namespace Blazor_Market.API.Model.AccountModel
 {
     public class RegisterModel
     {
@@ -22,5 +22,8 @@ namespace Blazor_Market.API.Model
         [MinLength(6)]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
+        
+        [Required]
+        public string? ROle { get; set; }
     }
 }

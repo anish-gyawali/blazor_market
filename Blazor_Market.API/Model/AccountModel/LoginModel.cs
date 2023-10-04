@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Blazor_Market.API.Model
+namespace Blazor_Market.API.Model.AccountModel
 {
     public class LoginModel
     {

@@ -1,4 +1,6 @@
 ﻿using Blazor_Market.API.Model;
+using Blazor_Market.API.Model.AccountModel;
+using Blazor_Market.API.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +27,7 @@ namespace Blazor_Market.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterModel registerModel)
+        public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
             if (!ModelState.IsValid)
             {
@@ -42,45 +44,38 @@ namespace Blazor_Market.API.Controllers
             if (user != null && registerModel.Password != null)
             {
                 var result = await _userManager.CreateAsync(user, registerModel.Password);
-                if (result.Succeeded)
+                if (!result.Succeeded)
                 {
-                    var token = GenerateJwtToken(user);
-                    return Ok(new { token = token });
+                    var errors = result.Errors.Select(x => x.Description);
+
+                    return BadRequest(ModelState);
                 }
-                else
-                {
-                    return BadRequest(result.Errors);
-                }
+                await _userManager.AddToRoleAsync(user, "User");
             }
-            // Handle any unexpected conditions or errors
-            return BadRequest("An error occurred while registering.");
+            return Ok("User Registration success!!");
         }
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> login([FromBody]LoginModel loginModel)
+        public async Task<ActionResult<LoginResponse>> login([FromBody] LoginModel loginModel)
         {
-            if (!ModelState.IsValid)
+            var user =await _userManager.FindByEmailAsync(loginModel.Email!);
+            var passwordValid = await _userManager.CheckPasswordAsync(user!, loginModel.Password!);
+            if (user == null || passwordValid==false) 
             {
-                return BadRequest(ModelState);
+                return Unauthorized();
             }
-            if (loginModel.Email != null && loginModel.Password != null)
+            var tokenString = await GeneratedToken(user);
+            var response = new LoginResponse
             {
-                var user = await _userManager.FindByNameAsync(loginModel.Email);
-                if (user != null && await _userManager.CheckPasswordAsync(user, loginModel.Password))
-                {
-                    // User successfully logged in
-
-                    // Generate JWT token
-                    var token = GenerateJwtToken(user);
-
-                    return Ok(new { Token = token });
-                }
-            }
-                // Login failed
-                return Unauthorized("Invalid credentials");
+                Email = loginModel.Email,
+                Token = tokenString,
+                UserId = user.Id,
+            };
+            return Ok(response);
         }
 
+        
         [HttpPost("logout")]
         [Authorize]
         public async Task<IActionResult> Logout()
@@ -90,36 +85,34 @@ namespace Blazor_Market.API.Controllers
             return Ok(new { message = "Logout successful" });
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [NonAction]
-        public string GenerateJwtToken(UserModel user)
+        private async Task<string> GeneratedToken(UserModel user)
         {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = _configuration["Jwt:Key"];
-            if (key != null)
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+            var credentials= new SigningCredentials(securityKey,SecurityAlgorithms.HmacSha256);
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var roleClaims = roles.Select(q => new Claim(ClaimTypes.Role, q)).ToList();
+
+            var userClaims= await _userManager.GetClaimsAsync(user);
+
+            var claims = new List<Claim>
             {
-                var keyBytes = Encoding.UTF8.GetBytes(key);
-
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new Claim[]
-                    {
-                new Claim(ClaimTypes.Name, user.Id),
-                new Claim(ClaimTypes.Email, user.Email!)
-                    }),
-                    Expires = DateTime.UtcNow.AddHours(1),
-
-                    // Use keyBytes instead of key here
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature)
-                };
-
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                return tokenHandler.WriteToken(token);
+                new Claim(JwtRegisteredClaimNames.Sub,user.UserName!),
+                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
+                new Claim(JwtRegisteredClaimNames.Email,user.Email!),
+                new Claim(CustomClaimsTypes.Uid,user.Id),
             }
-            else
-            {
-                throw new InvalidOperationException("Jwt:Key is not configured");
-            }
+            .Union(userClaims)
+            .Union(roleClaims);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Audience"],
+                claims: claims,
+                expires: DateTime.UtcNow.AddHours(Convert.ToInt32(_configuration["Jwt:Duration"])),
+                signingCredentials: credentials);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }

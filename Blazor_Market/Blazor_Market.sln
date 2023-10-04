@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor_Market", "Blazor_Market.csproj", "{764EF787-B78A-48C7-B3A1-6F26EA8C9312}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_Market", "Blazor_Market.csproj", "{764EF787-B78A-48C7-B3A1-6F26EA8C9312}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor_Market.API", "..\Blazor_Market.API\Blazor_Market.API.csproj", "{6D50D407-F1D8-46F9-83CB-BD58B8544E5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor_Market.API", "..\Blazor_Market.API\Blazor_Market.API.csproj", "{6D50D407-F1D8-46F9-83CB-BD58B8544E5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

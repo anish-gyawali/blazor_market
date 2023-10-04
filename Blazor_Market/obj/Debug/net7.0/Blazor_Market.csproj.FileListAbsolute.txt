@@ -11,6 +11,7 @@ C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazor_Market.dll
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazor_Market.pdb
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Blazored.LocalStorage.dll
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\anish\blazor_market\Blazor_Market\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
