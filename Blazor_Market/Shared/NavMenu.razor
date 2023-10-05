@@ -6,56 +6,65 @@
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="navbar-collapse @NavMenuCssClass">
-            <nav class="navbar-nav mx-auto">
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        <span class="oi oi-home" aria-hidden="true"></span> Home
-                    </NavLink>
-                </div>
-                <AuthorizeView>
-                    <Authorized>
-
-                        <NavLink class="nav-link" href="products">
-                            <span class="oi oi-box" aria-hidden="true"></span> Products
-                        </NavLink>
-                        <NavLink class="nav-link" href="about">
-                            <span class="oi oi-book" aria-hidden="true"></span> About us
-                        </NavLink>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <NavLink class="nav-link" href="logout">
+    <div class="navbar-collapse @NavMenuCssClass">
+    <nav class="navbar-nav mx-left">
+        <div class="nav-item align-self-auto">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <AuthorizeView>
+            <Authorized>
+                <NavLink class="nav-link" href="products">
+                    <span class="oi oi-box" aria-hidden="true"></span> Products
+                </NavLink>
+                <NavLink class="nav-link" href="about">
+                    <span class="oi oi-book" aria-hidden="true"></span> About us
+                 </NavLink>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" @onclick="ToggleDropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="oi oi-person" aria-hidden="true"></span> @context.User?.Identity?.Name
+                        </a>
+                        @if (showDropdown)
+                        {
+                            <div class="dropdown-menu show custom-dropdown">
+                                <NavLink class="dropdown-item" href="logout">
                                     <span class="oi oi-account-logout" aria-hidden="true"></span> Logout
                                 </NavLink>
-                            </li>
-                        </ul>
-                        <NavLink class="nav-link">
-                            <span class="oi oi-person" aria-hidden="true"></span> @context.User?.Identity?.Name
+                            </div>
+                        }
+                    </li>
+
+            </Authorized>
+            <NotAuthorized>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <NavLink class="nav-link" href="login">
+                            <span class="oi oi-account-login" aria-hidden="true"></span> Login
                         </NavLink>
-                    </Authorized>
-                    <NotAuthorized>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <NavLink class="nav-link" href="login">
-                                    <span class="oi oi-account-login" aria-hidden="true"></span> Login
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </NotAuthorized>
-                </AuthorizeView>
-                
-            </nav>
-        </div>
+                    </li>
+                </ul>
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
+</div>
+
     </div>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
+    private bool showDropdown = false;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+   
+    private void ToggleDropdown()
+    {
+        showDropdown = !showDropdown;
     }
 }
