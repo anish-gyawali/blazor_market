@@ -24,6 +24,6 @@ namespace Blazor_Market.API.Model.AccountModel
         public string? Password { get; set; }
         
         [Required]
-        public string? ROle { get; set; }
+        public string? Role { get; set; }
     }
 }

@@ -1,0 +1,34 @@
+﻿# Visual Studio files
+.vscode/
+.vs/
+bin/
+obj/
+*.user
+*.suo
+
+# Compiled output
+*.dll
+*.exe
+*.pdb
+*.log
+*.deploy
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET and Visual Studio folders
+/bin/
+/obj/
+/.vscode/
+.vscode/
+/.vs/
+.vs/
+/.idea/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
