@@ -1,6 +1,5 @@
 ﻿using Blazor_Market.API.Model.AccountModel;
-using Blazor_Market.Services;
-using Blazor_Market.Services.Authentication;
+using Blazor_Market.Services.AuthenticationService;
 using Microsoft.AspNetCore.Components;
 
 namespace Blazor_Market.Pages.Account

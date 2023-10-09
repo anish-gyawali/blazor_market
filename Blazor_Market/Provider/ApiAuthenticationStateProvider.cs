@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration.UserSecrets;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -57,6 +58,11 @@ namespace Blazor_Market.Provider
             var tokenContent = _jwtSecurityTokenHandler.ReadJwtToken(savedToken);
             var claims = tokenContent.Claims.ToList();
             claims.Add(new Claim(ClaimTypes.Name, tokenContent.Subject));
+            var uidClaim = tokenContent.Claims.FirstOrDefault(claim => claim.Type == "uid");
+            if (uidClaim != null)
+            {
+                claims.Add(new Claim(ClaimTypes.NameIdentifier, uidClaim.Value));
+            }
             return claims;
         }
     }

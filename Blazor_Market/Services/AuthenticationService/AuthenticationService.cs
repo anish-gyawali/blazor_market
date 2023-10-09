@@ -3,7 +3,7 @@ using Blazor_Market.Provider;
 using Blazored.LocalStorage;
 using System.Text.Json;
 
-namespace Blazor_Market.Services.Authentication
+namespace Blazor_Market.Services.AuthenticationService
 {
     public class AuthenticationService:IAuthenticationService
     {

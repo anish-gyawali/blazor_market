@@ -23,7 +23,6 @@ namespace Blazor_Market.API.Model.AccountModel
         [DataType(DataType.Password)]
         public string? Password { get; set; }
         
-        [Required]
         public string? Role { get; set; }
     }
 }

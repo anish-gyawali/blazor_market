@@ -32,10 +32,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/anish/blazor_market/Blazor_Market/Pages/Product/Products.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxQcm9kdWN0cy5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/anish/blazor_market/Blazor_Market/Shared/RedirectToLogin.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFJlZGlyZWN0VG9Mb2dpbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
@@ -55,6 +51,10 @@ build_metadata.AdditionalFiles.CssScope = b-qtp6kb93c3
 [C:/Users/anish/blazor_market/Blazor_Market/Pages/Account/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxSZWdpc3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-jwp6alo0pv
+
+[C:/Users/anish/blazor_market/Blazor_Market/Pages/Product/Products.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxQcm9kdWN0cy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-buthojq9v7
 
 [C:/Users/anish/blazor_market/Blazor_Market/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

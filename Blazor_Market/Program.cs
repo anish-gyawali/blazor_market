@@ -1,5 +1,6 @@
 using Blazor_Market.Provider;
-using Blazor_Market.Services.Authentication;
+using Blazor_Market.Services.AuthenticationService;
+using Blazor_Market.Services.ProductService;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -20,7 +21,7 @@ builder.Services.AddScoped<HttpClient>(s =>
 });
 builder.Services.AddHttpClient();
 
-builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IAuthenticationService,AuthenticationService>();
 
 builder.Services.AddScoped<ApiAuthenticationStateProvider>();

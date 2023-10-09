@@ -29,7 +29,7 @@ namespace Blazor_Market.API.Controllers
                         ProductName = product.ProductName,
                         ProductDescription = product.ProductDescription,
                         ProductPrice = product.ProductPrice,
-                        ProductImageBase64 = Convert.ToBase64String(product.ProductImageFileName!),
+                        ProductImageFileName = product.ProductImageFileName!,
                         ProductAddedDate = product.ProductAddedDate,
                         ProductStatus = product.ProductStatus,
                     }).ToList();
@@ -58,7 +58,7 @@ namespace Blazor_Market.API.Controllers
                 ProductName = product.ProductName,
                 ProductDescription = product.ProductDescription,
                 ProductPrice = product.ProductPrice,
-                ProductImageBase64 = Convert.ToBase64String(product.ProductImageFileName!),
+                ProductImageFileName = product.ProductImageFileName!,
                 ProductAddedDate = product.ProductAddedDate,
                 ProductStatus = product.ProductStatus,
             };
@@ -68,7 +68,7 @@ namespace Blazor_Market.API.Controllers
 
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateProductDto createProduct)
+        public async Task<IActionResult> Create([FromBody] CreateProductDto createProduct)
         {
             try
             {
@@ -76,25 +76,23 @@ namespace Blazor_Market.API.Controllers
                 {
                     return BadRequest("Product Name required");
                 }
-                if (createProduct.ProductPrice > 0)
+                if (createProduct.ProductPrice < 0)
                 {
                     return BadRequest("Product price must be positive");
                 }
-
-                byte[] imageBytes = Convert.FromBase64String(createProduct.ProductImageBase64!);
-
                 var productToCreate = new Product
                 {
+                    UserId = createProduct.UserId,
                     ProductName = createProduct.ProductName,
                     ProductDescription = createProduct.ProductDescription,
                     ProductPrice = createProduct.ProductPrice,
-                    ProductImageFileName = imageBytes,
+                    ProductImageFileName = createProduct.ProductImageFileName,
                     ProductAddedDate = createProduct.ProductAddedDate,
                     ProductStatus = createProduct.ProductStatus,
                 };
-
+                
                 _dataContext.Set<Product>().Add(productToCreate);
-                _dataContext.SaveChanges();
+                await _dataContext.SaveChangesAsync();
 
                 var productCreated = new ProductGetDto
                 {
@@ -102,7 +100,7 @@ namespace Blazor_Market.API.Controllers
                     ProductName = createProduct.ProductName,
                     ProductDescription = createProduct.ProductDescription,
                     ProductPrice = createProduct.ProductPrice,
-                    ProductImageBase64 = createProduct.ProductImageBase64,
+                    ProductImageFileName = createProduct.ProductImageFileName,
                     ProductAddedDate = createProduct.ProductAddedDate,
                     ProductStatus = createProduct.ProductStatus,
                 };
@@ -131,12 +129,8 @@ namespace Blazor_Market.API.Controllers
             product.ProductDescription = updateDto.ProductDescription;
             product.ProductAddedDate = updateDto.ProductAddedDate;
             product.ProductStatus = updateDto.ProductStatus;
-
-            if (!string.IsNullOrEmpty(updateDto.ProductImageBase64))
-            {
-                byte[] imageBytes = Convert.FromBase64String(updateDto.ProductImageBase64);
-                product.ProductImageFileName = imageBytes;
-            }
+            product.ProductImageFileName = updateDto.ProductImageFileName;
+            
 
             _dataContext.SaveChanges();
 

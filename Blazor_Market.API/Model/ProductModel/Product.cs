@@ -17,7 +17,7 @@
     {
         public int ProductId { get; set; }
         public string? ProductName { get; set; }
-        public string? ProductImageBase64 { get; set; }
+        public byte[]? ProductImageFileName { get; set; }
         public decimal ProductPrice { get; set; }
         public string? ProductDescription { get; set; }
         public DateTime ProductAddedDate { get; set; }
@@ -26,8 +26,13 @@
 
     public class CreateProductDto
     {
+        public CreateProductDto()
+        {
+            ProductAddedDate = DateTime.Now; 
+        }
+        public string? UserId { get; set; }
         public string? ProductName { get; set; }
-        public string? ProductImageBase64 { get; set; }
+        public byte[]? ProductImageFileName { get; set; }
         public decimal ProductPrice { get; set; }
         public string? ProductDescription { get; set; }
         public DateTime ProductAddedDate { get; set; }
@@ -36,14 +41,15 @@
     }
     public class ProductUpdateDto
     {
+        public int ProductId { get; set; }
         public string? ProductName { get; set; }
-        public string? ProductImageBase64 { get; set; }
+        public byte[]? ProductImageFileName { get; set; }
         public decimal ProductPrice { get; set; }
         public string? ProductDescription { get; set; }
         public DateTime ProductAddedDate { get; set; }
         public ProductStatus ProductStatus { get; set; }
     }
-        public enum ProductStatus
+    public enum ProductStatus
     {
         New,
         Used

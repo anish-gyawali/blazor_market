@@ -1,0 +1,50 @@
+﻿
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.text-purple {
+    color: #800080; 
+}
+
+.create-product-form {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.create-product-form label {
+    font-weight: bold;
+}
+
+.create-product-form input[type="text"],
+.create-product-form textarea,
+.create-product-form input[type="file"],
+.custom-select select {
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 30px; 
+}
+
+.custom-select select:focus {
+    outline: none;
+    border-color: #800080;
+}
+
+.create-product-form button.btn-purple {
+    background-color: #800080; 
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    margin-top:10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.create-product-form button.btn-purple:hover {
+    background-color: #5a005a; 
+}
