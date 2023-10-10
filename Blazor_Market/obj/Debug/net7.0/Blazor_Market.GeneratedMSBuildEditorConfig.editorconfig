@@ -52,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope = b-qtp6kb93c3
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFxSZWdpc3Rlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-jwp6alo0pv
 
+[C:/Users/anish/blazor_market/Blazor_Market/Pages/Home/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZVxIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-kpo08hdxd6
+
 [C:/Users/anish/blazor_market/Blazor_Market/Pages/Product/Products.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdFxQcm9kdWN0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-buthojq9v7

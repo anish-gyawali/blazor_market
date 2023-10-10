@@ -1,0 +1,38 @@
+﻿@page "/home"
+<h3 class="home-title">Available Products In Blazor Market:</h3>
+
+<div class="row">
+    @if (Products != null)
+    {
+        @foreach (var product in Products)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card product-card">
+                    <img src="@product.ProductImageBase64" class="card-img-top img-fluid" alt="@product.ProductName">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductName</h5>
+                        <p class="card-name-text">(Seller: @product.FirstName)</p>
+                        <p class="card-text">@product.ProductDescription</p>
+                        <p class="card-text">Price: $@product.ProductPrice</p>
+                        <p class="card-text">Status: @product.ProductStatus</p>
+                        <p class="card-text">Product Added: @product.ProductAddedDate</p>
+                        <div class="text-center mt-3">
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary btn-sm mr-2">Update</button>
+                                <button class="btn btn-success btn-sm">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Loading products...</p>
+    }
+</div>
+
+@code {
+
+}

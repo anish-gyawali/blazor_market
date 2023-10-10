@@ -5,7 +5,7 @@ namespace Blazor_Market.Services.ProductService
     public interface IProductService
     {
         List<ProductGetDto> Products { get; set; }
-        Task GetAllProducts();
+        Task<List<ProductGetDto>> GetAllProducts();
         Task<ProductGetDto> GetProductById(int id);
         Task CreateProduct(CreateProductDto createProduct);
         Task UpdateProduct(ProductUpdateDto updateProduct);

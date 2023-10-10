@@ -20,7 +20,6 @@ namespace Blazor_Market.Pages.Product
         private NavigationManager? NavigationManager { get; set; }
         [Inject]
         private IProductService? ProductService { get; set; }
-        private ProductGetDto? selectedProduct;
         private CreateProductDto createProductModel = new CreateProductDto(); 
         private ProductUpdateDto updateProductModel = new ProductUpdateDto();
 
@@ -65,10 +64,7 @@ namespace Blazor_Market.Pages.Product
         {
             await ProductService!.GetAllProducts();
         }
-        private async Task GetProduct(int productId)
-        {
-            selectedProduct = await ProductService!.GetProductById(productId);
-        }
+        
         private async Task CreateProduct()
         {
             var authenticationState = await authenticationStateProvider!.GetAuthenticationStateAsync();

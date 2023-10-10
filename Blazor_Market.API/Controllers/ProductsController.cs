@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Blazor_Market.API.DbContext;
 using Blazor_Market.API.Model.ProductModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blazor_Market.API.Controllers
 {
@@ -19,7 +20,7 @@ namespace Blazor_Market.API.Controllers
         {
             try
             {
-                var query = _dataContext.Set<Product>().AsQueryable();
+                var query = _dataContext.Set<Product>().Include(p => p.User).AsQueryable();
                 query = query.Skip((page - 1) * pageSize).Take(pageSize);
 
                 var data = query
@@ -32,6 +33,7 @@ namespace Blazor_Market.API.Controllers
                         ProductImageFileName = product.ProductImageFileName!,
                         ProductAddedDate = product.ProductAddedDate,
                         ProductStatus = product.ProductStatus,
+                        FirstName = product.User!.FirstName
                     }).ToList();
 
                 return Ok(data);

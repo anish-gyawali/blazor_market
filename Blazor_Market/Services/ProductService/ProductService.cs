@@ -18,11 +18,10 @@ namespace Blazor_Market.Services.ProductService
             var response = await _httpClient.PostAsJsonAsync("api/products", createProduct);
             response.EnsureSuccessStatusCode();
         }
-        public async Task GetAllProducts()
+        public async Task<List<ProductGetDto>> GetAllProducts()
         {
             var result = await _httpClient.GetFromJsonAsync<List<ProductGetDto>>("api/products");
-            if (result != null)
-                Products = result;
+            return result!;
         }
         public async Task<ProductGetDto> GetProductById(int id)
         {
