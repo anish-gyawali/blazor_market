@@ -23,6 +23,7 @@
         public DateTime ProductAddedDate { get; set; }
         public ProductStatus ProductStatus { get; set; }
         public string? FirstName { get; set; }
+        public string? UserId { get; set; }
 
         public string ProductImageBase64 =>
             ProductImageFileName != null ? $"data:image/png;base64,{Convert.ToBase64String(ProductImageFileName)}" : "";

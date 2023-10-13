@@ -8,6 +8,8 @@ namespace Blazor_Market.Pages.Home
     {
         private List<ProductGetDto> Products { get; set; } = new List<ProductGetDto>();
         [Inject]
+        private NavigationManager? Navigate { get; set; }
+        [Inject]
         private IProductService? ProductService { get; set; }
 
         protected override async Task OnInitializedAsync()
@@ -15,6 +17,9 @@ namespace Blazor_Market.Pages.Home
             var products = await ProductService!.GetAllProducts();
             Products = products;
         }
-
+        private void UpdateProduct(int productId)
+        {
+            Navigate?.NavigateTo($"/products/{productId}");
+        }
     }
 }

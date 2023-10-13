@@ -2,6 +2,10 @@
 using Blazor_Market.API.DbContext;
 using Blazor_Market.API.Model.ProductModel;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Blazor_Market.API.Static;
 
 namespace Blazor_Market.API.Controllers
 {
@@ -10,9 +14,11 @@ namespace Blazor_Market.API.Controllers
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _dataContext;
-        public ProductsController(ApplicationDbContext dataContext)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public ProductsController(ApplicationDbContext dataContext, IHttpContextAccessor httpContextAccessor)
         {
             _dataContext = dataContext;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -46,7 +52,7 @@ namespace Blazor_Market.API.Controllers
         [HttpGet("{id}")]
         public IActionResult GetProductById(int id)
         {
-            var product = _dataContext.Set<Product>()
+            var product = _dataContext.Set<Product>().Include(u => u.User)
                 .FirstOrDefault(p => p.ProductId == id);
 
             if (product == null)
@@ -63,6 +69,7 @@ namespace Blazor_Market.API.Controllers
                 ProductImageFileName = product.ProductImageFileName!,
                 ProductAddedDate = product.ProductAddedDate,
                 ProductStatus = product.ProductStatus,
+                UserId=product.User!.Id
             };
 
             return Ok(productDto);
@@ -116,9 +123,9 @@ namespace Blazor_Market.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProduct(int id, [FromBody] ProductUpdateDto updateDto)
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody] ProductUpdateDto updateDto)
         {
-            var product = _dataContext.Set<Product>()
+            var product = _dataContext.Set<Product>().Include(p => p.User)
                 .FirstOrDefault(p => p.ProductId == id);
 
             if (product == null)
@@ -126,15 +133,22 @@ namespace Blazor_Market.API.Controllers
                 return NotFound("Product not found.");
             }
 
+            if (updateDto.ProductImageFileName != null && updateDto.ProductImageFileName.Length > 0)
+            {
+                product.ProductImageFileName = updateDto.ProductImageFileName;
+            }
+            else
+            {
+                product.ProductImageFileName = product.ProductImageFileName;
+            }
+
             product.ProductName = updateDto.ProductName;
             product.ProductPrice = updateDto.ProductPrice;
             product.ProductDescription = updateDto.ProductDescription;
             product.ProductAddedDate = updateDto.ProductAddedDate;
             product.ProductStatus = updateDto.ProductStatus;
-            product.ProductImageFileName = updateDto.ProductImageFileName;
-            
 
-            _dataContext.SaveChanges();
+            await _dataContext.SaveChangesAsync();
 
             return Ok("Product updated successfully.");
         }
@@ -156,8 +170,6 @@ namespace Blazor_Market.API.Controllers
 
             return Ok("Product deleted successfully.");
         }
-
-
 
     }
 }

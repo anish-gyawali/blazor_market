@@ -18,7 +18,7 @@
                         <p class="card-text">Product Added: @product.ProductAddedDate</p>
                         <div class="text-center mt-3">
                             <div class="d-flex justify-content-between">
-                                <button class="btn btn-primary btn-sm mr-2">Update</button>
+                                <button class="btn btn-primary btn-sm mr-2" @onclick="() => UpdateProduct(product.ProductId)">Update</button>
                                 <button class="btn btn-success btn-sm">Add to Cart</button>
                             </div>
                         </div>

@@ -80,6 +80,7 @@ C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\staticwebassets.buil
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\staticwebassets.development.json
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Pages\Account\Login.razor.rz.scp.css
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Pages\Account\Register.razor.rz.scp.css
+C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Pages\Home\Home.razor.rz.scp.css
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Pages\Product\Products.razor.rz.scp.css
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
@@ -91,4 +92,3 @@ C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\refint\Blazor_Market
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.pdb
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\Blazor_Market.genruntimeconfig.cache
 C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\ref\Blazor_Market.dll
-C:\Users\anish\blazor_market\Blazor_Market\obj\Debug\net7.0\scopedcss\Pages\Home\Home.razor.rz.scp.css

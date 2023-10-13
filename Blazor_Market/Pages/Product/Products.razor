@@ -1,6 +1,8 @@
 ﻿@page "/products"
+@page "/products/{productId:int?}"
+
 <div class="container">
-    <h3 class="text-center text-purple">Create Product</h3>
+    <h3 class="text-center text-purple">@((IsUpdatingProduct) ? "Update Product" : "Create Product")</h3>
 
     @if (!string.IsNullOrEmpty(errorMessage))
     {
@@ -9,18 +11,24 @@
         </div>
     }
 
-    <form class="create-product-form" @onsubmit="CreateProduct">
+    <form class="create-product-form" @onsubmit="async () => {
+    if (IsUpdatingProduct) {
+        await UpdateProduct(productIdToUpdate ?? 0); 
+    } else {
+        await CreateProduct();
+    }
+}">
         <div class="form-group">
             <label for="createProductName">Product Name</label>
-            <input id="createProductName" class="form-control" @bind="createProductModel.ProductName" required />
+            <input id="createProductName" class="form-control" @bind="@ProductName" required />
         </div>
         <div class="form-group">
             <label for="createProductDescription">Description</label>
-            <textarea id="createProductDescription" class="form-control" @bind="createProductModel.ProductDescription"></textarea>
+            <textarea id="createProductDescription" class="form-control" @bind="@ProductDescription"></textarea>
         </div>
         <div class="form-group">
             <label for="createProductPrice">Price $</label>
-            <input id="createProductPrice" class="form-control" type="number" step="0.01" @bind="createProductModel.ProductPrice" @oninput="ValidatePrice" required />
+            <input id="createProductPrice" class="form-control" type="number" step="0.01" @bind="@ProductPrice" @oninput="ValidatePrice" required />
         </div>
         <div class="form-group">
             <label for="createProductImage">Upload Image</label>
@@ -28,18 +36,18 @@
         </div>
         <div class="form-group">
             <label>Added Date</label>
-            <input id="createProductDate" type="date" class="form-control" @bind="createProductModel.ProductAddedDate" disabled />
+            <input id="createProductDate" type="date" class="form-control" @bind="@ProductAddedDate" disabled />
         </div>
         <div class="form-group custom-select">
             <label for="createProductStatus">Status</label>
-            <select id="createProductStatus" class="form-control" @bind="createProductModel.ProductStatus">
+            <select id="createProductStatus" class="form-control" @bind="@ProductStatus">
                 <option value="New">New</option>
                 <option value="Used">Used</option>
             </select>
         </div>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-purple">Create</button>
+            <button type="submit" class="btn btn-primary btn-purple">@((IsUpdatingProduct) ? "Update" : "Create")</button>
         </div>
     </form>
 </div>
